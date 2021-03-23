@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>Let's Make Your Timetable ;)</h1>
+    <div id='post-form'>
+    <form method="post" novalidate></form>
+        {% csrf_token %}
+        
+        <table>
+            {{ form|crispy }}
+        </table>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+{% endblock %}
+{% for item in form %}
+    <tr>
+        <td>{{item}}</td>
+    </tr>
+    {% endfor %}
