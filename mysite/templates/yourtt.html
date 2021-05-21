@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1> Your TimeTable:</h1>
+<a href="{% url 'edittt' %}">
+    <button type="submit"  class="btn btn-primary">Edit</button></a>
+<table  class="table table-striped table-dark"> <thead> <tr style="text-align: right;"> <th></th> <th>time</th> <th>event</th> </tr> </thead> <tbody> <tr> <th>0</th> <td>6:00AM</td> <td>SLEEP</td> </tr> <tr> <th>1</th> <td>7:00AM</td> <td>WAKEUP</td> </tr> <tr> <th>2</th> <td>8:00AM</td> <td>BREAKFAST</td> </tr> <tr> <th>3</th> <td>9:00AM</td> <td>ATTEND LECTURE</td> </tr> <tr> <th>4</th> <td>10:00AM</td> <td>ATTEND LECTURE</td> </tr> <tr> <th>5</th> <td>11:00AM</td> <td>ATTEND LECTURE</td> </tr> <tr> <th>6</th> <td>12:00PM</td> <td>ATTEND LECTURE</td> </tr> <tr> <th>7</th> <td>01:00PM</td> <td>LUNCH</td> </tr> <tr> <th>8</th> <td>2:00PM</td> <td>TAKE A NAP</td> </tr> <tr> <th>9</th> <td>3:00PM</td> <td>TAKE A NAP</td> </tr> <tr> <th>10</th> <td>4:00PM</td> <td>WALK</td> </tr> <tr> <th>11</th> <td>5:00PM</td> <td>GAME</td> </tr> <tr> <th>12</th> <td>6:00PM</td> <td>GAME</td> </tr> <tr> <th>13</th> <td>7:00PM</td> <td>WATCH TV</td> </tr> <tr> <th>14</th> <td>8:00PM</td> <td>DINNER</td> </tr> <tr> <th>15</th> <td>9:00PM</td> <td>WATCH TV</td> </tr> </tbody> </table>
+{% endblock %}

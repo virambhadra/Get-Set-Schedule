@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1> Delete Connection: </h1>
+{{ form|crispy }}
+<a href="{% url 'myconnect' %}"><button type="submit"  class="btn btn-primary">Delete Connection</button></a>
+{% endblock %}

@@ -129,5 +129,6 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = 'makett'
 LOGOUT_REDIRECT_URL = 'home'
-
+TIME_INPUT_FORMATS = ['%I:%M %p',]
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#AUTH_USER_MODEL ='core.user'

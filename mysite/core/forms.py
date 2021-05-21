@@ -1,4 +1,8 @@
 from django import forms
+from django.db import models
+
+
+
 class Bar(forms.Form):
     def __init__(self, fields, *args, **kwargs):
         super(Bar, self).__init__(*args, **kwargs)
@@ -7,3 +11,15 @@ class Bar(forms.Form):
 
 class Foo(forms.Form):
     field = forms.CharField()
+
+
+class base_form(forms.Form):
+    start_time = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
+    #forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
+    end_time = forms.TimeField(widget=forms.TimeInput(format='%I:%M:%p',attrs={'type': 'time'}))
+    profession = forms.CharField(max_length=100)
+    career = forms.CharField(max_length=100)
+    #DateTimeField(input_formats='%H:%M %p'
+
+class pre_text(forms.Form):
+    aboutme=models.TextField(blank=True, verbose_name=('About Me'))

@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<a href="{% url 'addconn' %}"><button type="submit"  class="btn btn-primary">Add Connection</button></a>
+<a href="{% url 'deleteconn' %}"><button type="submit"  class="btn btn-primary">Delete Connection</button></a>
+{% endblock %}
