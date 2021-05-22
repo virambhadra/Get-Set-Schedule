@@ -9,6 +9,9 @@ from .forms import *
 import pandas as pd
 import json
 from django.http import HttpResponse, HttpResponseRedirect
+import difflib
+
+
 '''from friendship.models import Friend, Follow, Block
 from friendship.models import FriendshipRequest
 '''
@@ -43,9 +46,21 @@ class SecretPage(LoginRequiredMixin, TemplateView):
 
 
 def makett(request):
-    # connection.introspection.table_names()
-    form = Bar(['Name','Profession','Stream','Hobbies'])
-    
+    submitbutton= request.POST.get("submit")
+
+    profession = ''
+    stream = ''
+    hobbies = ''
+
+    form = main_form(request.POST or None)
+    if form.is_valid():
+        profession = form.cleaned_data.get('profession')
+        stream = form.cleaned_data.get('stream')
+        hobbies = form.cleaned_data.get('hobbies')
+        timetable = match(profession,stream)
+        #print(timetable)
+        request.session['timetable'] = timetable 
+        return redirect('yourtt')
     #print(connection.introspection.table_names())
     # form = [str(Foo(prefix=i)) for i in range(4)]
     # form = '\n'.join(form)
@@ -96,7 +111,11 @@ def Table(request):
     return render(request,'friend.html')
 '''
 def yourtt(request):
-    return render(request,'yourtt.html')
+    timetable = request.session['timetable']
+    time = ['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm']
+    table = list(zip(time,timetable))
+    #print(table)
+    return render(request,'yourtt.html',{'table':table})
 
 def edittt(request):
     form = Bar(['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm'])
@@ -112,3 +131,19 @@ def addconn(request):
 def deleteconn(request):
     form = Bar(['Username'])
     return render(request,'deleteconn.html',{'form':form})
+
+def match(profession,stream):
+    df = pd.read_csv(r'mysite/static/data.csv')
+    col_mapping = [f"{c[0]}:{c[1]}" for c in enumerate(df.columns)]
+    col_mapping_dict = {c[0]:c[1] for c in enumerate(df.columns)}
+    profcard = df.iloc[:,:2]
+    profcard=profcard.values.tolist()
+    pf = []
+    for i in range(len(profcard)):
+        a = '_'.join(profcard[i]).replace(' ','_')
+        pf.append(a)
+        test = [profession,stream]
+    i = pf.index(difflib.get_close_matches('_'.join(test).replace(' ','_'),pf)[0])
+    z = df.iloc[i,:]
+    z = list(z)
+    return z[2:]

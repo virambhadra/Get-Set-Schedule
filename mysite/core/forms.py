@@ -23,3 +23,8 @@ class base_form(forms.Form):
 
 class pre_text(forms.Form):
     aboutme=models.TextField(blank=True, verbose_name=('About Me'))
+
+class main_form(forms.Form):
+    profession = forms.CharField(max_length=100)
+    stream = forms.CharField(max_length=100)
+    hobbies = forms.CharField(max_length=100)
