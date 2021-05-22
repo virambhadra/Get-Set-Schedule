@@ -2,17 +2,33 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <h1>Let's Make Your Timetable ;)</h1>
-    <div id='post-form'>
-    <form method="post" novalidate></form>
+<div id='post-form'>
+    <form action="" method="POST">
         {% csrf_token %}
-        
-        <table>
-            {{ form|crispy }}
-        </table>
-        <a href="{% url 'yourtt' %}">
-        <button type="submit"  class="btn btn-primary">Submit</button></a>
-    </form>
-    </div>
+        {{ form|crispy }}
+        <input class="btn btn-primary" type="Submit" name="submit" value="Submit"/>
+        </form>
+</div>
+{% if submitbutton == "Submit" %} 
+    <h1> Your 6am name is {{ on_6am }}</h1>
+    <h1> Your 7am name is {{ on_7am }}</h1>
+    <h1> Your 8am name is {{ on_8am }}</h1>
+    <h1> Your 9am name is {{ on_9am }}</h1>
+    <h1> Your 10am name is {{ on_10am }}</h1>
+    <h1> Your 11am name is {{ on_11am }}</h1>
+    <h1> Your 12am name is {{ on_12am }}</h1>
+    <h1> Your 1pm name is {{ on_1pm }}</h1>
+    <h1> Your 2pm name is {{ on_2pm }}</h1>
+    <h1> Your 3pm name is {{ on_3pm }}</h1>
+    <h1> Your 4pm name is {{ on_4pm }}</h1>
+    <h1> Your 5pm name is {{ on_5pm }}</h1>
+    <h1> Your 6pm name is {{ on_6pm }}</h1>
+    <h1> Your 7pm name is {{ on_7pm }}</h1>
+    <h1> Your 8pm name is {{ on_8pm }}</h1>
+    <h1> Your 9pm name is {{ on_9pm }}</h1>
+    {% endif %}
+    <script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script>
+
 {% endblock %}
 {% for item in form %}
     <tr>

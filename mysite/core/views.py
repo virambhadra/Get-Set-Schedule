@@ -113,12 +113,71 @@ def Table(request):
 def yourtt(request):
     timetable = request.session['timetable']
     time = ['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm']
+    request.session['time'] = time 
+
     table = list(zip(time,timetable))
     #print(table)
     return render(request,'yourtt.html',{'table':table})
 
 def edittt(request):
-    form = Bar(['6am','7am','8am','9am','10am','11am','12am','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm'])
+    submitbutton= request.POST.get("submit")
+
+    on_6am = ''
+    on_7am = ''
+    on_8am = ''
+    on_9am = ''
+    on_10am = ''
+    on_11am = ''
+    on_12am = ''
+    on_1pm = ''
+    on_2pm = ''
+    on_3pm = ''
+    on_4pm = ''
+    on_5pm = ''
+    on_6pm = ''
+    on_7pm = ''
+    on_8pm = ''
+    on_9pm = ''
+
+    time = ['on_6am','on_7am','on_8am','on_9am','on_10am','on_11am','on_12am','on_1pm','on_2pm','on_3pm','on_4pm','on_5pm','on_6pm','on_7pm','on_8pm','on_9pm']
+    timetable = request.session['timetable']
+    initial = dict(zip(time,timetable))
+    form = am_pm(request.POST or None,initial=initial)
+    if form.is_valid():
+        on_6am = form.cleaned_data.get('on_6am')
+        on_7am = form.cleaned_data.get('on_7am')
+        on_8am = form.cleaned_data.get('on_8am')
+        on_9am = form.cleaned_data.get('on_9am') 
+        on_10am = form.cleaned_data.get('on_10am')
+        on_11am = form.cleaned_data.get('on_11am')
+        on_12am = form.cleaned_data.get('on_12am')
+        on_1pm = form.cleaned_data.get('on_1pm')
+        on_2pm = form.cleaned_data.get('on_2pm')
+        on_3pm = form.cleaned_data.get('on_3pm')
+        on_4pm = form.cleaned_data.get('on_4pm')
+        on_5pm = form.cleaned_data.get('on_5pm')
+        on_6pm = form.cleaned_data.get('on_6pm')
+        on_7pm = form.cleaned_data.get('on_7pm')
+        on_8pm = form.cleaned_data.get('on_8pm')
+        on_9pm = form.cleaned_data.get('on_9pm')
+        table = [on_6am,on_7am,on_8am,on_9am,on_10am,on_11am,on_12am,on_1pm,on_2pm,on_3pm,on_4pm,on_5pm,on_6pm,on_7pm,on_8pm,on_9pm]
+        request.session['timetable'] = table
+        return redirect('yourtt')
+    '''submitbutton= request.POST.get("submit")
+
+    profession = ''
+    stream = ''
+    hobbies = ''
+
+    form = main_form(request.POST or None)
+    if form.is_valid():
+        profession = form.cleaned_data.get('profession')
+        stream = form.cleaned_data.get('stream')
+        hobbies = form.cleaned_data.get('hobbies')
+        timetable = match(profession,stream)
+        #print(timetable)
+        request.session['timetable'] = timetable 
+        return redirect('yourtt')'''
     return render(request,'edittt.html',{'form':form})
 
 def myconnect(request):

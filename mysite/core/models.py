@@ -1,11 +1,5 @@
 from django.db import models
-'''from django.contrib.auth.models import AbstractUser
 
+class Model1(models.Model):
+    name = models.CharField(max_length=100)
 
-class User(AbstractUser):
-    friends = models.ManyToManyField("User",blank=True)
-
-class friend_requests(models.Model):
-    from_user = models.ForeignKey(User,related_name="from_user",on_delete=models.CASCADE)
-    to_user = models.ForeignKey(User,related_name='to_user',on_delete=models.CASCADE)
-    '''

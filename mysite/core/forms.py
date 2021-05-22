@@ -1,6 +1,6 @@
 from django import forms
 from django.db import models
-
+from .models import *
 
 
 class Bar(forms.Form):
@@ -28,3 +28,27 @@ class main_form(forms.Form):
     profession = forms.CharField(max_length=100)
     stream = forms.CharField(max_length=100)
     hobbies = forms.CharField(max_length=100)
+
+class Model1ModelForm(forms.ModelForm):
+    class Meta:
+        model = Model1
+        fields = ('name', )
+
+
+class am_pm(forms.Form):
+    on_6am = forms.CharField(max_length=100)
+    on_7am = forms.CharField(max_length=100)
+    on_8am = forms.CharField(max_length=100)
+    on_9am = forms.CharField(max_length=100)
+    on_10am = forms.CharField(max_length=100)
+    on_11am = forms.CharField(max_length=100)
+    on_12am = forms.CharField(max_length=100)
+    on_1pm = forms.CharField(max_length=100)
+    on_2pm = forms.CharField(max_length=100)
+    on_3pm = forms.CharField(max_length=100)
+    on_4pm = forms.CharField(max_length=100)
+    on_5pm = forms.CharField(max_length=100)
+    on_6pm = forms.CharField(max_length=100)
+    on_7pm = forms.CharField(max_length=100)
+    on_8pm = forms.CharField(max_length=100)
+    on_9pm = forms.CharField(max_length=100)
