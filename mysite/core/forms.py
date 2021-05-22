@@ -52,3 +52,7 @@ class am_pm(forms.Form):
     on_7pm = forms.CharField(max_length=100)
     on_8pm = forms.CharField(max_length=100)
     on_9pm = forms.CharField(max_length=100)
+
+
+class  conn_name(forms.Form):
+    name = forms.CharField(max_length=100)

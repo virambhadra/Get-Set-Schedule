@@ -163,32 +163,26 @@ def edittt(request):
         table = [on_6am,on_7am,on_8am,on_9am,on_10am,on_11am,on_12am,on_1pm,on_2pm,on_3pm,on_4pm,on_5pm,on_6pm,on_7pm,on_8pm,on_9pm]
         request.session['timetable'] = table
         return redirect('yourtt')
-    '''submitbutton= request.POST.get("submit")
-
-    profession = ''
-    stream = ''
-    hobbies = ''
-
-    form = main_form(request.POST or None)
-    if form.is_valid():
-        profession = form.cleaned_data.get('profession')
-        stream = form.cleaned_data.get('stream')
-        hobbies = form.cleaned_data.get('hobbies')
-        timetable = match(profession,stream)
-        #print(timetable)
-        request.session['timetable'] = timetable 
-        return redirect('yourtt')'''
     return render(request,'edittt.html',{'form':form})
 
 def myconnect(request):
     return render(request,'myconnect.html')
-
 def addconn(request):
-    form = Bar(['Username'])
+    form = conn_name(request.POST or None)
+    name = ''
+    if form.is_valid():
+        name = form.cleaned_data.get('name')
+        print(name)
+        return redirect('myconnect')
     return render(request,'addconn.html', {'form':form})
 
 def deleteconn(request):
-    form = Bar(['Username'])
+    form = conn_name(request.POST or None)
+    name = ''
+    if form.is_valid():
+        name = form.cleaned_data.get('name')
+        print(name)
+        return redirect('myconnect')
     return render(request,'deleteconn.html',{'form':form})
 
 def match(profession,stream):
